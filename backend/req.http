@@ -1,0 +1,29 @@
+PUT http://localhost:8000/api/v1/user/655a367e4a9dbd92f97653ef
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWEzNjdlNGE5ZGJkOTJmOTc2NTNlZiIsImlhdCI6MTcwMDQxMzM4Mn0.W4lSIibfch_DU3u6tfNEM9_1VyLNE8u21wG8FgfZGWo
+
+{
+    "username": "snguyen97",
+    "password": "admin_2"
+}
+
+###
+GET http://localhost:8000/api/v1/user/655a367e4a9dbd92f97653ef
+
+###
+POST http://localhost:8000/api/v1/user/login
+Content-Type: application/json
+
+{
+    "username": "snguyen97",
+    "password": "admin_2"
+}
+
+###
+POST http://localhost:8000/api/v1/user/register
+Content-Type: application/json
+
+{
+    "username": "snguyen97",
+    "password": "admin_2"
+}
