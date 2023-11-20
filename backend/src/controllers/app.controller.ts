@@ -69,16 +69,15 @@ export default class AppController {
       password: hashedPassword,
     });
     await createdUser.save();
-    return res.status(201).json(createdUser);
+    return res.status(201).json({
+      id: createdUser._id,
+    });
   }
 
   async update(req: Request, res: Response) {
-    const user = await User.findOne(
-      {
-        _id: req.params.userId,
-      },
-      { password: 0 }
-    );
+    const user = await User.findOne({
+      _id: req.params.userId,
+    });
     if (!user) {
       return res.status(404).json({
         message: 'Not Found',
@@ -91,8 +90,6 @@ export default class AppController {
     user.save();
     return res.status(200).json({
       id: user._id,
-      username: user.username,
-      fullName: user.fullName,
     });
   }
 }

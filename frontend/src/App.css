@@ -1,42 +1,30 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.form-center {
+    margin: 100px 400px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('https://lms.ueh.edu.vn/theme/image.php/lambda/theme/1683867666/page_bg/squairy_light');
+    background-size: auto;
+    color: #555;
+    text-shadow: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.signup__logo {
+    margin: 50px 0 50px;
+    border-radius: 10px;
+    width: 150px;
+    height: auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.UAJaRc{
+    width: 35px;
+    height: 35px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.rpo4wf-J3yWx {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: white;
+    margin-left: 0.625rem;
 }
