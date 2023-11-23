@@ -62,7 +62,7 @@ const EditUser: React.FC = () => {
         </Form.Item>
 
         <Form.Item<FieldType> label='Password' name='password'>
-          <Input placeholder={'******'} />
+          <Input placeholder={'******'} type='password' />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
