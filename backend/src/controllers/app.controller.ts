@@ -21,12 +21,12 @@ export default class AppController {
 
   async login(req: Request, res: Response) {
     const user = await User.findOne({
-      username: req.body.username,
+      email: req.body.email,
     });
 
     if (!user) {
       return res.status(400).json({
-        message: 'Incorrect username or password',
+        message: 'Incorrect email or password',
       });
     }
     const isValid = await argon2.verify(
@@ -35,7 +35,7 @@ export default class AppController {
     );
     if (!isValid) {
       return res.status(400).json({
-        message: 'Incorrect username or password',
+        message: 'Incorrect email or password',
       });
     }
     const accessToken = jwt.sign(
@@ -47,25 +47,60 @@ export default class AppController {
     );
     return res.status(200).json({
       id: user._id,
-      username: user.username,
+      email: user.email,
       fullName: user.fullName,
+      accessToken,
+    });
+  }
+
+  async loginGoogle(req: Request, res: Response) {
+    const input = {
+      email: req.body.email,
+      fullName: req.body.full_name,
+      avatar: req.body.avatar,
+    };
+    const user = await User.findOne({
+      email: input.email,
+    });
+    if (user) {
+      return res.status(400).json({
+        message: 'User with email already existed',
+      });
+    }
+    const newUser = new User({
+      fullName: input.fullName,
+      email: input.email,
+      avatar: input.avatar,
+    });
+    await newUser.save();
+    const accessToken = jwt.sign(
+      { id: newUser.id },
+      process.env.JWT_SECRET_KEY as string,
+      {
+        expiresIn: '1h',
+      }
+    );
+    return res.status(201).json({
+      id: newUser._id,
+      email: newUser.email,
+      fullName: newUser.fullName,
       accessToken,
     });
   }
 
   async register(req: Request, res: Response) {
     const user = await User.findOne({
-      username: req.body.username,
+      email: req.body.email,
     });
     if (user) {
       return res.status(400).json({
-        message: `Username already existed`,
+        message: `email already existed`,
       });
     }
     const hashedPassword = await argon2.hash(req.body.password);
     const createdUser = new User({
       fullName: req.body.fullName,
-      username: req.body.username,
+      email: req.body.email,
       password: hashedPassword,
     });
     await createdUser.save();
